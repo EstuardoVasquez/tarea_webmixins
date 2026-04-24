@@ -53,7 +53,8 @@ h1 {
   margin-bottom: 18px;
 }
 
-.task-form label {
+.task-form label,
+.filter-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: 700;
@@ -65,7 +66,8 @@ h1 {
   gap: 12px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-height: 48px;
   box-sizing: border-box;
@@ -76,7 +78,8 @@ input {
   background: #ffffff;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border-color: #2563eb;
   outline: 3px solid rgba(37, 99, 235, 0.18);
 }
@@ -112,6 +115,18 @@ button:disabled {
   color: #b91c1c;
 }
 
+.filters-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 220px) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.filter-group {
+  min-width: 0;
+}
+
 .task-list {
   display: grid;
   gap: 10px;
@@ -133,8 +148,20 @@ button:disabled {
   box-sizing: border-box;
 }
 
-.task-item span {
+.task-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.task-copy span {
   overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.task-copy small {
+  color: #64748b;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -143,8 +170,21 @@ button:disabled {
   background: #dc2626;
 }
 
-.task-item button:hover {
+.task-item button:hover:not(:disabled) {
   background: #b91c1c;
+}
+
+.pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.page-indicator {
+  font-weight: 800;
+  color: #334155;
 }
 
 @media (max-width: 560px) {
@@ -154,6 +194,7 @@ button:disabled {
 
   .title-row,
   .form-row,
+  .filters-row,
   .task-item {
     grid-template-columns: 1fr;
   }
@@ -172,5 +213,10 @@ button:disabled {
 
   button {
     width: 100%;
+  }
+
+  .pagination-row {
+    display: grid;
+    justify-content: stretch;
   }
 }

@@ -27,12 +27,36 @@ Rutas principales:
 - `POST /api/token/`: obtener token JWT
 - `POST /api/token/refresh/`: refrescar token JWT
 
+La API de tareas:
+
+- requiere JWT para acceder
+- devuelve solo tareas del usuario autenticado
+- permite filtrar por `completed`
+- permite buscar por `search`
+- pagina resultados de 5 en 5
+
 Ejemplo para crear una tarea:
 
 ```json
 {
   "title": "Estudiar mixins",
   "completed": false
+}
+```
+
+Ejemplos de consulta:
+
+- `GET /api/tasks/?completed=true`
+- `GET /api/tasks/?search=django`
+- `GET /api/tasks/?page=2`
+- `GET /api/tasks/?completed=false&search=pan&page=1`
+
+Ejemplo para obtener token:
+
+```json
+{
+  "username": "maria",
+  "password": "clave-segura-123"
 }
 ```
 
@@ -51,6 +75,14 @@ El frontend usa por defecto `http://localhost:8000/api/`. Si necesitas cambiarlo
 ```env
 REACT_APP_API_URL=http://localhost:8000/api/
 ```
+
+El frontend ya soporta:
+
+- busqueda por titulo
+- filtro por estado
+- navegacion entre paginas
+
+Para consumir la API protegida, guarda el JWT de acceso en `localStorage` con la clave `token`.
 
 ## Verificacion
 

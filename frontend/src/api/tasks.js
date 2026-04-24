@@ -14,7 +14,7 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
-export const getTasks = () => API.get('tasks/');
+export const getTasks = (params = {}) => API.get('tasks/', { params });
 
 export const createTask = (task) => API.post('tasks/', task);
 

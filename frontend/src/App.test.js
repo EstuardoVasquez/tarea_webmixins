@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+
 import App from './App';
 import { getTasks } from './api/tasks';
 
@@ -9,7 +10,14 @@ jest.mock('./api/tasks', () => ({
 }));
 
 test('renders task list title', async () => {
-  getTasks.mockResolvedValue({ data: [] });
+  getTasks.mockResolvedValue({
+    data: {
+      count: 0,
+      next: null,
+      previous: null,
+      results: [],
+    },
+  });
 
   render(<App />);
 
